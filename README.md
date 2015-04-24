@@ -9,8 +9,11 @@ This is a structure to facilitate the different levels and interests that this b
 3. Do your thing, help others, receive help.
 4. Submit a pull request
 
-#List of what people are doing (Who to talk to)
+# Who to talk to
+List of who is doing what. Either submit a pull request just updating this, or tell Bryan.
+
 - Bryan - Coordinating, helping, raising a barn, possibly even learning!
+- More!
 
 # Reporting Issues
 Please submit an issue and either how to fix it and/or a pull request for just that issue. Lots of people coding on a very small project could mean a lot of merge conflicts.
