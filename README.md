@@ -1,7 +1,7 @@
 # OSBR_viz
 Open Science Barn Raising - Visualizations
 
-This is a structure to facilitate the different levels and interests that this barn raising could see.
+This is a structure to facilitate the different levels and interests that this barn raising could see. Please refer to https://osf.io/hnim5/ for project documetation.
 
 # Contribute
 1. Fork the repository
