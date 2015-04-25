@@ -40,6 +40,7 @@ circle {
 </style>
 <body>
 <script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
 <script>
 
 var width = 1200;
@@ -50,8 +51,26 @@ var maxRadius = 50;
 var minRadius = 25;
 
 
-var n = 30, // total number of circles
-    m = 3; // number of distinct clusters
+var n = 0, // total number of circles
+    m = 0; // number of distinct clusters
+    data = null;
+    
+$.ajax({
+  dataType: "json",
+  url: "http://localhost:5000/contributor/?guid=/rnizy/",
+  async: false,
+  success: function(response, status, xhr) {
+      data = response;
+      console.log(response);
+      m = response.children.length;
+      n = m;
+      for(var i = 0; i < response.children.length; i++) {
+        if (typeof(response.children[i].children) !== "undefined") {
+          n  = n + response.children[i].children.length;
+        }
+      }
+  }
+});
 
 function color(i) {
     var colors = ["#aad4f7", "#e1e1e1", "#337ab7"];
@@ -63,6 +82,23 @@ function color(i) {
 // The largest node for each cluster.
 var clusters = new Array(m);
 
+var nodes = [];
+
+for (var dc = 0; dc < data.children.length; dc++) {
+  var r = Math.round(Math.sqrt((dc + 1) / m * -Math.log(Math.random())) * maxRadius);
+  var cnode = { clusterX: dc,  radius: r, name: data.children[dc].name }
+  if (!clusters[dc] || (r > clusters[dc].radius)) clusters[dc] = cnode;
+  nodes.push(cnode);
+  if (typeof(data.children[dc].children) !== "undefined") {
+    for (var dc2 = 0; dc2 < data.children[dc].children.length; dc2++) {
+      var cnode2 = { clusterX: dc,  radius: r, name: data.children[dc].children[dc2].name }
+      if (!clusters[dc2] || (r > clusters[dc2].radius)) clusters[dc2] = cnode2;
+      nodes.push(cnode2);
+    }
+  }
+}
+
+/*
 var nodes = d3.range(n).map(function() {
   var i = Math.floor(Math.random() * m);
   var r = Math.round(Math.sqrt((i + 1) / m * -Math.log(Math.random())) * maxRadius);
@@ -73,6 +109,7 @@ var nodes = d3.range(n).map(function() {
   if (!clusters[i] || (r > clusters[i].radius)) clusters[i] = d;
   return d;
 });
+*/
 
 var force = d3.layout.force()
     .nodes(nodes)
