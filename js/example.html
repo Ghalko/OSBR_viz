@@ -50,12 +50,18 @@ var maxRadius = 50;
 var minRadius = 25;
 
 
-var n = 30, // total number of circles
-    m = 3; // number of distinct clusters
+var n = 100, // total number of circles
+    m = 20; // number of distinct clusters
+
+var colorBase = [];
 
 function color(i) {
-    var colors = ["#aad4f7", "#e1e1e1", "#337ab7"];
-    return colors[i];
+    if(!colorBase[i]){
+        colorBase[i] = "#0";
+        for(var j=0;j < 5; j++){
+            colorBase[i] += ([1,2,3,4,5,6,7,8,9,"a","b","c","d","e","f"][Math.floor((Math.random()* (1-(i+1)/(m) *.4))*15)]);
+    }
+    return colorBase[i];
 }
     //d3.scale.category10()
     //.domain(d3.range(m));
