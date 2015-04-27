@@ -55,11 +55,16 @@ var n = 100, // total number of circles
 
 var colorBase = [];
 
+
+//generates random color
 function color(i) {
     if(!colorBase[i]){
         colorBase[i] = "#0";
+        var character = [1,2,3,4,5,6,7,8,9,"a","b","c","d","e","f"];
         for(var j=0;j < 5; j++){
-            colorBase[i] += ([1,2,3,4,5,6,7,8,9,"a","b","c","d","e","f"][Math.floor((Math.random()* (1-(i+1)/(m) *.4))*15)]);
+            var value = Math.floor((Math.random()*15));
+            colorBase[i] += character[value];
+        }
     }
     return colorBase[i];
 }
