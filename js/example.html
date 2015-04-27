@@ -46,7 +46,6 @@ circle {
 $.ajax({
   dataType: "json",
   url: "http://localhost:5000/contributor/?guid=/rnizy/",
-  async: false,
   success: function(response, status, xhr) {
       m = response.children.length;
       data = response;
