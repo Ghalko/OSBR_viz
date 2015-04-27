@@ -15,7 +15,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    with open('tree.html') as f:
+    with open('../js/example.html') as f:
         return f.read()
 
 @app.route('/contributor/')
