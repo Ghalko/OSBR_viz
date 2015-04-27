@@ -48,25 +48,24 @@ var padding = 1.5; // separation between same-color circles
 var clusterPadding = 6; // separation between different-color circles
 var maxRadius = 50;
 var minRadius = 25;
+var colors = []; //color for each cluster
 
 
 var n = 100, // total number of circles
     m = 20; // number of distinct clusters
 
-var colorBase = [];
 
-
-//generates random color
+//generates random colors for clusters
 function color(i) {
-    if(!colorBase[i]){
-        colorBase[i] = "#0";
+    if(!colors[i]){
+        colors[i] = "#0";
         var character = [1,2,3,4,5,6,7,8,9,"a","b","c","d","e","f"];
         for(var j=0;j < 5; j++){
             var value = Math.floor((Math.random()*15));
-            colorBase[i] += character[value];
+            colors[i] += character[value];
         }
     }
-    return colorBase[i];
+    return colors[i];
 }
     //d3.scale.category10()
     //.domain(d3.range(m));
