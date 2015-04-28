@@ -125,7 +125,7 @@ function launchD3(m, data) {
       .on("mouseover", mouseover)
       .on("mouseout", mouseout)
       .on("click", function(){
-        dclick(this);
+              onClick(this);
       })
       .on("dblclick", function(d) { return addTangle(d); })
       .call(force.drag);
@@ -189,12 +189,12 @@ function launchD3(m, data) {
   var listofTangles = [];
   
   function addTangle(current) {
-      var rTcolor = color(current.clusterX);
+      var rTangleColor = color(current.clusterX);
       var name = current.name;
       var tHeight = 50;
       var tWidth = 75;
   
-      listofTangles.push(new roundTangle(rTcolor, name, tHeight, tWidth));
+      listofTangles.push(roundTangle(rTangleColor, name, tHeight, tWidth));
   
       nextCoords[0] = nextCoords[0] + tWidth + 5;
       if (nextCoords[0] + tWidth > width) {
@@ -203,7 +203,7 @@ function launchD3(m, data) {
       }
   }
   
-  function roundTangle(rTcolor) {
+  function roundTangle(roundTangleColor, name, tHeight, tWidth) {
     this.tangle = svg.append("rect")
       .attr("rx", 6)
       .attr("ry", 6)
@@ -212,13 +212,13 @@ function launchD3(m, data) {
       .attr("width", tWidth)
       .attr("height", tHeight)
       .text(name)
-      .style("fill", tangleColor);
+      .style("fill", roundTangleColor);
   
   }
   
-  var previous; //for previous click for dclick (static?)
+  var previous; //for previous click for onClick (static?)
   
-  function dclick(current) {
+  function onClick(current) {
     if (current !== previous) {
       d3.select(current).style("stroke-width", "1");
       if (previous !== 'undefined') {
