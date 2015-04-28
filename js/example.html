@@ -49,9 +49,6 @@ $.ajax({
   success: function(response, status, xhr) {
       m = response.children.length;
       data = response;
-      for(var dr = 0; dr < m; dr++) {
-        data.children[dr].top = true;
-      }
       launchD3(m, data);
   }
 });
@@ -93,17 +90,17 @@ function launchD3(m, data) {
        * Larger radius for circles with more authors, etc.?
        */
       var r = 20; //Math.round(Math.sqrt((x + 1) / m * -Math.log(Math.random())) * maxRadius);
-      if (typeof(children[dc].top) !== "undefined") {
+      if (children[dc].top) {
         x = dc;
         r = 50;
       }
       var cnode = { clusterX: x,  radius: r, name: children[dc].name }
       nodes.push(cnode);
-      if (typeof(children[dc].top) !== "undefined") {
+      if (children[dc].top) {
         clusters[x] = cnode;
       }
       if (typeof(children[dc].children) !== "undefined") {
-        assembleNodes(children[dc].children, dc);
+        assembleNodes(children[dc].children);
       }
     }
   }

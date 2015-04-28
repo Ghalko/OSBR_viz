@@ -40,11 +40,12 @@ def search_contributor():
         contributors = []
         for idx,y in enumerate(x['contributors']):
             #Not all contributors have URLs associated with them? How does this affect correlation?
-            contributors.append({ 'name': y['fullname'], 'url': y['url'] })
+            contributors.append({ 'name': y['fullname'], 'url': y['url'], 'top': False })
         val.append({
             'name': x['title'],
             'children': contributors,
-            'url': x['url']
+            'url': x['url'],
+            'top': True
         })
     return json.dumps({'children': val})
 
