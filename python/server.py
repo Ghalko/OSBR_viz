@@ -6,7 +6,7 @@ from flask import request
 
 
 HEADERS = {
-    'Content-type': 'application/json'
+    'Content-type': 'application/json',
 }
 URL = 'https://osf.io/api/v1/search/'
 
