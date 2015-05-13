@@ -74,11 +74,12 @@ function launchD3(m, data) {
   
   function color(i) {
     if(!colors[i]){
-        colors[i] = "#0";
+        colors[i] = "#00";
         var character = [1,2,3,4,5,6,7,8,9,"a","b","c","d","e","f"];
-        for(var j=0;j < 5; j++){
+        for(var j=0;j < 2; j++){
             var value = Math.floor((Math.random()*15));
             colors[i] += character[value];
+            colors[i] += "f";
         }
     }
     return colors[i];
@@ -106,10 +107,11 @@ function launchD3(m, data) {
        * Thinking radius should be weighted according to subelements.
        * Larger radius for circles with more authors, etc.?
        */
+        console.log(children[dc]);
       var r = 20; //Math.round(Math.sqrt((x + 1) / m * -Math.log(Math.random())) * maxRadius);
       if (children[dc].top) {
         x = dc;
-        r = 50;
+        r = 25+(Math.log(children[dc].children.length)*10);
       }
       var cnode = { clusterX: x,  radius: r, name: children[dc].name }
       nodes.push(cnode);
